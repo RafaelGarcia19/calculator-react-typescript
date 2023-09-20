@@ -14,21 +14,16 @@ export const useTheme = () => {
 		switch (theme) {
 			case 'light':
 				document.querySelector('html')?.classList.remove('dark');
-				console.log('light');
-
 				break;
 			case 'dark':
 				document.querySelector('html')?.classList.add('dark');
-				console.log('dark');
 				break;
 			case 'system':
 				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 					document.querySelector('html')?.classList.add('dark');
-					console.log('system dark');
 					break;
 				}
 				document.querySelector('html')?.classList.remove('dark');
-				console.log('system light');
 				break;
 		}
 	}, [theme]);
