@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { evaluate } from 'mathjs';
 import { CalculatorContext } from '../context/CalculatorContext';
 
 export const useCalculator = () => {
@@ -45,7 +46,7 @@ export const useCalculator = () => {
 
 	const evaluateExpression = () => {
 		try {
-			const result = eval(expression);
+			const result = evaluate(expression);
 			if (typeof result === 'number') {
 				setExpression(result.toString());
 			} else {
