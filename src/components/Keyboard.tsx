@@ -7,6 +7,7 @@ export const Keyboard = () => {
 		backspaceExpression,
 		clearExpression,
 		evaluateExpression,
+		clearHistory,
 	} = useCalculator();
 
 	const handleButtonClick = (value: string) => {
@@ -41,7 +42,7 @@ export const Keyboard = () => {
 			<Button character='-' handleButtonClick={handleButtonClick} />
 			<Button character='0' handleButtonClick={handleButtonClick} />
 			<Button character='.' handleButtonClick={handleButtonClick} />
-			<Button character='History' handleButtonClick={handleButtonClick} />
+			<Button character='ACH' handleButtonClick={() => clearHistory()} />
 			<Button
 				character='='
 				handleButtonClick={() => evaluateExpression()}

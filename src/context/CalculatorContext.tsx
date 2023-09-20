@@ -5,9 +5,15 @@ type CalculatorContextType = {
 	setExpression: React.Dispatch<React.SetStateAction<string>>;
 	theme: Theme;
 	setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+	history: Array<History>;
+	setHistory: React.Dispatch<React.SetStateAction<Array<History>>>;
 };
 
 type Theme = 'light' | 'dark' | 'system';
+type History = {
+	expression: string;
+	result: number;
+};
 
 export const CalculatorContext = createContext<
 	CalculatorContextType | undefined
@@ -18,10 +24,18 @@ export const CalculatorProvider: React.FC<React.PropsWithChildren<unknown>> = ({
 }) => {
 	const [expression, setExpression] = useState<string>('');
 	const [theme, setTheme] = useState<Theme>('system');
+	const [history, setHistory] = useState<Array<History>>([]);
 
 	return (
 		<CalculatorContext.Provider
-			value={{ expression, setExpression, theme, setTheme }}
+			value={{
+				expression,
+				setExpression,
+				theme,
+				setTheme,
+				history,
+				setHistory,
+			}}
 		>
 			{children}
 		</CalculatorContext.Provider>

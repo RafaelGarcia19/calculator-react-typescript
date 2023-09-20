@@ -10,7 +10,7 @@ export const useCalculator = () => {
 		);
 	}
 
-	const { setExpression, expression } = context;
+	const { setExpression, expression, history, setHistory } = context;
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -48,6 +48,7 @@ export const useCalculator = () => {
 		try {
 			const result = evaluate(expression);
 			if (typeof result === 'number') {
+				setHistory((prev) => [...prev, { expression, result }]);
 				setExpression(result.toString());
 			} else {
 				setExpression('Error');
@@ -63,6 +64,10 @@ export const useCalculator = () => {
 
 	const backspaceExpression = () => {
 		setExpression((prev) => prev.slice(0, -1));
+	};
+
+	const clearHistory = () => {
+		setHistory([]);
 	};
 
 	const handleButton = (value: string) => {
@@ -95,7 +100,9 @@ export const useCalculator = () => {
 
 	return {
 		expression,
+		history,
 		evaluateExpression,
+		clearHistory,
 		clearExpression,
 		backspaceExpression,
 		handleButton,
